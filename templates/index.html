@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MindAnchor AI | Student Counselor</title>
+    <style>
+        :root {
+            --bg: #0f172a; --card: #1e293b; --text: #f8fafc;
+            --accent: #10b981; --secondary: #94a3b8;
+            --low: #22c55e; --medium: #f59e0b; --high: #ef4444;
+        }
+        body {
+            background: var(--bg); color: var(--text);
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            display: flex; justify-content: center; min-height: 100vh; margin: 0; padding: 20px;
+        }
+        .container {
+            background: var(--card); width: 100%; max-width: 700px;
+            padding: 2.5rem; border-radius: 1.5rem; box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+        h1 { margin: 0; color: var(--accent); font-size: 2.2rem; text-align: center; letter-spacing: -1px; }
+        .subtitle { color: var(--secondary); margin-bottom: 2.5rem; text-align: center; font-size: 0.95rem; }
+        .slider-grid {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem;
+        }
+        @media (max-width: 550px) { .slider-grid { grid-template-columns: 1fr; } }
+        .slider-item { background: rgba(15, 23, 42, 0.3); padding: 1rem; border-radius: 0.75rem; border: 1px solid rgba(255,255,255,0.05); }
+        label { display: block; margin-bottom: 0.75rem; font-weight: 500; color: #cbd5e1; font-size: 0.85rem; }
+        input[type=range] { width: 100%; cursor: pointer; accent-color: var(--accent); }
+        .val-badge { float: right; color: var(--accent); font-weight: bold; background: rgba(16, 185, 129, 0.1); padding: 2px 8px; border-radius: 4px; }
+        .actions { display: flex; gap: 1rem; margin-top: 1rem; }
+        .btn-submit {
+            flex: 3; padding: 1.2rem; border: none; border-radius: 0.75rem;
+            background: var(--accent); color: #064e3b; font-weight: bold;
+            cursor: pointer; font-size: 1.1rem; transition: 0.3s ease;
+        }
+        .btn-submit:hover { transform: translateY(-2px); filter: brightness(1.1); box-shadow: 0 10px 20px rgba(16, 185, 129, 0.2); }
+        .btn-reset {
+            flex: 1; padding: 1.2rem; border-radius: 0.75rem;
+            background: #334155; color: white; text-decoration: none;
+            text-align: center; font-weight: 600; font-size: 1rem;
+            border: 1px solid #475569; transition: 0.2s;
+        }
+        .btn-reset:hover { background: #475569; }
+        .result-container {
+            margin-top: 3rem; padding: 2rem; border-radius: 1.25rem;
+            background: rgba(15, 23, 42, 0.5); border-left: 6px solid var(--accent);
+            animation: fadeIn 0.5s ease-out;
+        }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .status-header { display: flex; align-items: center; gap: 10px; margin-bottom: 1.5rem; }
+        .dot { height: 12px; width: 12px; border-radius: 50%; display: inline-block; }
+        .advice-body { line-height: 1.8; color: #e2e8f0; font-size: 1rem; }
+        .advice-body b, .advice-body strong { color: var(--accent); }
+        .advice-body br { margin-bottom: 10px; display: block; content: ""; }
+        /* Stress Level Colors */
+        .color-0 { color: var(--low); } .dot-0 { background-color: var(--low); }
+        .color-1 { color: var(--medium); } .dot-1 { background-color: var(--medium); }
+        .color-2 { color: var(--high); } .dot-2 { background-color: var(--high); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>⚓ MindAnchor</h1>
+        <p class="subtitle">AI-Powered Student Stress Analysis & Counseling</p>
+
+        <form method="POST">
+            <div class="slider-grid">
+                <div class="slider-item">
+                    <label>Anxiety Level (0-21) <span class="val-badge" id="v1">10</span></label>
+                    <input type="range" name="anxiety_level" min="0" max="21" value="10" oninput="v1.innerText=this.value">
+                </div>
+                <div class="slider-item">
+                    <label>Self Esteem (0-30) <span class="val-badge" id="v2">15</span></label>
+                    <input type="range" name="self_esteem" min="0" max="30" value="15" oninput="v2.innerText=this.value">
+                </div>
+                <div class="slider-item">
+                    <label>Depression (0-27) <span class="val-badge" id="v3">5</span></label>
+                    <input type="range" name="depression" min="0" max="27" value="5" oninput="v3.innerText=this.value">
+                </div>
+                <div class="slider-item">
+                    <label>Sleep Quality (0-5) <span class="val-badge" id="v4">3</span></label>
+                    <input type="range" name="sleep_quality" min="0" max="5" value="3" oninput="v4.innerText=this.value">
+                </div>
+                <div class="slider-item">
+                    <label>Study Load (0-5) <span class="val-badge" id="v5">3</span></label>
+                    <input type="range" name="study_load" min="0" max="5" value="3" oninput="v5.innerText=this.value">
+                </div>
+                <div class="slider-item">
+                    <label>Performance (0-5) <span class="val-badge" id="v6">3</span></label>
+                    <input type="range" name="academic_performance" min="0" max="5" value="3" oninput="v6.innerText=this.value">
+                </div>
+                <div class="slider-item" style="grid-column: span 2;">
+                    <label>Bullying Experience (0-5) <span class="val-badge" id="v7">0</span></label>
+                    <input type="range" name="bullying" min="0" max="5" value="0" oninput="v7.innerText=this.value">
+                </div>
+            </div>
+
+            <div class="actions">
+                <button type="submit" class="btn-submit">Analyze My Stress</button>
+                <a href="/" class="btn-reset">Reset</a>
+            </div>
+        </form>
+
+        {% if prediction is not none %}
+        <div class="result-container" style="border-left-color: var({% if prediction == 0 %}--low{% elif prediction == 1 %}--medium{% else %}--high{% endif %})">
+            <div class="status-header">
+                <span class="dot dot-{{prediction}}"></span>
+                <h3 style="margin:0;">Assessment:
+                    <span class="color-{{prediction}}">
+                        {% if prediction == 0 %}Low{% elif prediction == 1 %}Moderate{% else %}High{% endif %} Stress Level
+                    </span>
+                </h3>
+            </div>
+            <div class="advice-body">
+                {{ advice | safe }}
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
