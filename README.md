@@ -1,4 +1,4 @@
-# ⚓ MindAnchor
+# MindAnchor
 
 ### *Where Data Meets Empathy.*
 
@@ -6,28 +6,28 @@
 
 -----
 
-## 🏷️ Project Tags
+## Project Tags
 
 `#AIWellness` `#HuggingFace` `#MachineLearning` `#MentalHealthTech` `#PredictiveAnalytics` `#Python` `#GenerativeAI` `#HealthTech` `#SmartRemedies`
 
 -----
 
-## ✨ The Problem vs. The Solution
+## The Problem vs. The Solution
 
   * **The Problem:** Most health apps give you a cold score (e.g., *"Your stress is 85%"*). This often leads to more anxiety, not less.
   * **The MindAnchor Solution:** We use Machine Learning to calculate that score, but then we hand the "microphone" to a **Large Language Model (LLM)** to explain what that means and—more importantly—what you can do about it right now.
 
 -----
 
-## 🧠 The AI Pipeline: Prediction ➔ Remedy
+## The AI Pipeline: Prediction ➔ Remedy
 
 MindAnchor operates on a unique **Two-Tier AI Architecture** that ensures users never leave with just a number, but always with a plan.
 
-### 🛡️ Tier 1: The Predictor (The Brain)
+### Tier 1: The Predictor (The Brain)
 
 Using the logic refined in [MindAnchor\_2.ipynb](https://github.com/rida7-crypto/MindAnchor/blob/master/MindAnchor_2.ipynb), the system analyzes your inputs to detect patterns. It identifies the "What"—categorizing your current state (e.g., Anxiety Level, Sleep Quality, or Burnout Risk) with mathematical precision.
 
-### 🌿 Tier 2: The Provider (The Heart)
+### Tier 2: The Provider (The Heart)
 
 This is where **Hugging Face** comes in. We feed the prediction into a state-of-the-art LLM (like GPT-2, Mistral, or Flan-T5).
 
@@ -37,7 +37,7 @@ This is where **Hugging Face** comes in. We feed the prediction into a state-of-
 
 -----
 
-## 🛠️ Built With...
+## Built With...
 
   * **[Hugging Face Transformers](https://huggingface.co/docs/transformers/index):** Driving the conversational intelligence and remedy generation.
   * **Flask/FastAPI:** Powering the core [web application](https://github.com/rida7-crypto/MindAnchor/blob/master/app.py).
@@ -46,7 +46,7 @@ This is where **Hugging Face** comes in. We feed the prediction into a state-of-
 
 -----
 
-## 🚀 Quick Start
+## Quick Start
 
 ### 1\. Clone the Vessel
 
@@ -71,7 +71,7 @@ docker run -p 5000:5000 mindanchor
 
 -----
 
-## 📂 Project Anatomy
+## Project Anatomy
 
   * `app.py`: The heart of the web server and LLM orchestration.
   * `templates/`: The beautiful [UI components](https://github.com/rida7-crypto/MindAnchor/tree/master/templates) where users interact with the AI.
@@ -80,7 +80,7 @@ docker run -p 5000:5000 mindanchor
 
 -----
 
-## 🤝 Join the Mission
+## Join the Mission
 
 We are always looking to make MindAnchor smarter and more empathetic.
 
